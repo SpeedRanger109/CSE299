@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+#d1{
+
+  width: 900px; height: 500px;
+  overflow-x: hidden;
+
+}
 
 h1 {
   color: #426696;
@@ -115,7 +121,7 @@ main {
   font-weight: 600;
 }
 
-/* GAMES */
+
 .status {
   margin-bottom: 3rem;
 }
