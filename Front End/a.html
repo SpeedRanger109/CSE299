@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+    
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Hello, world!</title>
+  </head>
+  <style>
+  #hero {
+    width: 100%;
+    height: 80vh;
+    background: url("https://images.pexels.com/photos/1097930/pexels-photo-1097930.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") center center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  #hero .container {
+    padding-top: 80px;
+  }
+  img {
+  border: 4px solid #ddd;
+  border-radius: 6px;
+  padding: 5px;
+  width: 250px;
+
+
+
+  
+</style>
+  </html>
+  <body>
+        <!-- for nav -->
+        <nav class="navbar navbar-expand-lg class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="/">OFFICE MANGEMENT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% block homeactive %}  {% endblock homeactive %}">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item {% block aboutactive %}  {% endblock aboutactive %}" >
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item {% block contactactive %}  {% endblock contactactive %} ">
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item {% block blogactive %}  {% endblock blogactive %} ">
+                  <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                
+              </ul>
+              <form method="get" action="/search"class="form-inline my-2 my-lg-0 mx-3">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
+                <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+                <a href="/admin" role="button" target="_blank" class="btn btn-outline-success m-2 my-sm-0"> Admin Panel </a>
+              </form>
+    
+                  
+    
+              {% if user.is_authenticated %}
+                
+               
+                  <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button" data-toggle="dropdown"> Welcome {{request.user}}</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+              
+                      </div>
+                    </li>
+                    </ul>
+                    </div>
+                    
+              {% else %}
+                <!-- Button to  trigger Login modal -->
+              <button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#loginModal">
+              Login
+              </button>
+              
+              <button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#signupModal">
+              SignUp
+              </button>
+              {% endif %}
+    
+    
+            </div>
+          </nav
+      <!-- nav end -->
+
+
+
+
+    
+      
+    </div>
+  </nav>
+  {% for message in messages  %}            
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  {% endfor %}    
+
+
+
+
+
+<!-- SignUp Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="signupModalTitle">SignUp Here</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form action= "/signup" method='post'>
+<div class="form-group">
+<label for="username">Username</label>
+<input type="text" class="form-control" id="username" name="username" placeholder="Choose a unique username" required>
+</div>
+<div class="form-group">
+<label for="fname">First Name</label>
+<input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Your First Name" required>
+</div>
+<div class="form-group">
+<label for="lname">Last Name</label>
+<input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Your Last Name" required>
+</div>
+<div class="form-group">
+<label for="email">Email address</label>
+<input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+</div>
+<div class="form-group">
+<label for="pass1">Choose a password</label>
+<input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose Your Password" required>
+</div>
+<div class="form-group">
+<label for="pass2">Confirm Password</label>
+<input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter your password again" required>
+</div>
+
+
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>
+</div>
+</div>
+
+      <div class="modal fade bd-example-modal-lg" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalTitle">Login Here</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="/login" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Choose a unique username">
+        </div>
+        <div class="form-group">
+          <label for="pass">Enter your password </label>
+          <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Enter your password ">
+        </div>
+       
+              <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+            </div>
+             <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  {% if request.user.groups.all.0.name == "patient" %}
+                 <div class="container">    
+                  <div class="row">
+                      <div class="panel panel-default">
+                      <div class="panel-heading">  <h4 >User Profile</h4></div>
+                       <div class="panel-body">
+                      <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                       <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="rounded mx-auto d-block> 
+                     
+                 
+                      </div>
+                      <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
+                          <div class="container" >
+                            <h2>{{request.user.email}}</h2>
+                            <p>an   <b> patient</b></p>
+                          
+                           
+                          </div>
+                           <hr>
+                          <ul class="container details" >
+                            <li><p><span class="glyphicon glyphicon-user one" style="width:50px;"></span> {{request.user.first_name}}</p></li>
+                            <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>somerandom@email.com</p></li>
+                          </ul>
+                          <hr>
+                          <div class="col-sm-5 col-xs-6 tital " >Date Of Joining: {{request.user.date_joined}}</div>
+                      </div>
+                </div>
+            </div>
+            </div>
+
+ {% endif %}
+
+
+ {% if user.is_authenticated is False %}
+<section id="hero" class="d-flex align-items-center">
+        <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="500">
+          <h1>appoint your doctor</h1>
+          
+          <a href="/doctor" class="btn-get-started scrollto">Get Started</a>
+        </div>
+      </section>
+ {% endif %}
+                
+
+
+ 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  </body>
+</html>

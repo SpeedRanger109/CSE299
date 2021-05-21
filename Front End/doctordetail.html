@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Page Title</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="">
+<style>
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+<body>
+
+<img src="img_la.jpg" alt="LA" style="width:100%">
+
+<div class="">
+  <div class="container">    
+                  <div class="row">
+                      <div class="panel panel-default">
+                      <div class="panel-heading">  <h4 >User Profile</h4></div>
+                       <div class="panel-body">
+                      <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+                       <img alt="User Pic" src='/media/{{product.image}}' id="profile-image1" style="height:200px;" style="width:200px;" class="rounded mx-auto d-block> 
+                     
+                 
+                      </div>
+                      <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
+                          <div class="container" >
+                            <h2>{{product.Email}}</h2>
+                            <p>an   <b> patient</b></p>
+                          
+                           
+                          </div>
+                           <hr>
+                          <ul class="container details" >
+                            <li><p><span class="glyphicon glyphicon-user one" style="width:50px;"></span> {{request.user.first_name}}</p></li>
+                            <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>somerandom@email.com</p></li>
+                          </ul>
+                          <hr>
+                          <div class="col-sm-5 col-xs-6 tital " >Date Of Joining: {{request.user.date_joined}}</div>
+                      </div>
+                </div>
+            </div>
+            </div>
+</body>
+</html>
+
+  
+
+
+
+
+
+
+
+
+
